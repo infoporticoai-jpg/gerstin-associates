@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { MapPin, Mail, Phone, Printer } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
@@ -7,10 +8,10 @@ import { AttorneyRow } from "@/components/cards";
 import { Icon } from "@/components/icon";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
-import { SmartImage } from "@/components/smart-image";
 import { attorneys, whyChoose } from "@/lib/content";
 import { firm, fullAddress } from "@/lib/firm";
-import { heroImage, aboutImage } from "@/lib/images";
+import { heroImage } from "@/lib/images";
+import logoSrc from "@/public/images/logo.png";
 
 export const metadata: Metadata = {
   title: "About Our Law Firm",
@@ -69,16 +70,13 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-navy">
-              <SmartImage
-                src={aboutImage}
-                alt="Gerstin & Associates"
-                className="absolute inset-0 size-full object-cover"
-                fallback={
-                  <div className="flex size-full items-center justify-center bg-gradient-to-br from-navy to-navy-700">
-                    <Icon name="Landmark" size={64} className="text-white/15" />
-                  </div>
-                }
+            <div className="flex items-center justify-center rounded-xl border border-line bg-paper px-8 py-16">
+              <Image
+                src={logoSrc}
+                alt="Gerstin & Associates, Attorneys & Counselors at Law"
+                priority
+                className="h-auto w-full max-w-[340px]"
+                sizes="(max-width: 1024px) 90vw, 340px"
               />
             </div>
 
