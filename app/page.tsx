@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Phone, MapPin, BadgeCheck } from "lucide-react";
+import { ArrowRight, Phone, MapPin, BadgeCheck, Quote } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
@@ -8,15 +8,18 @@ import { ArticleCard } from "@/components/cards";
 import { PracticeScroll } from "@/components/practice-scroll";
 import { AttorneyFeature } from "@/components/attorney-feature";
 import { SmartImage } from "@/components/smart-image";
+import { cn } from "@/lib/utils";
 import {
   practiceAreas,
   attorneys,
   articles,
-  firmDifference,
+  firmStats,
   whyChoose,
 } from "@/lib/content";
 import { firm, fullAddress } from "@/lib/firm";
 import { heroImage } from "@/lib/images";
+
+const joshua = attorneys.find((a) => a.slug === "joshua-gerstin") ?? attorneys[0];
 
 export default function HomePage() {
   return (
@@ -99,35 +102,120 @@ export default function HomePage() {
         <PracticeScroll items={practiceAreas} />
       </Section>
 
-      {/* 4 — WHY CHOOSE (borderless icon + text rows) */}
-      <Section tone="cream">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <SectionHeader
-            align="left"
-            eyebrow="Why Gerstin & Associates"
-            title="The advice of a firm that focuses on its strength, not its size"
-            intro="Our clients stay with us because we combine deep legal experience with genuine understanding of their goals — and deliver results, not expensive legal theories."
-            className="lg:sticky lg:top-28"
-          />
-          <div className="border-t border-line/70">
-            {whyChoose.map((item, i) => (
-              <Reveal key={item.title} delay={(i % 2) * 60}>
-                <div className="grid grid-cols-[auto_1fr] items-start gap-5 border-b border-line/70 py-6">
-                  <Icon
-                    name={item.icon}
-                    size={26}
-                    className="mt-1 text-accent"
-                  />
-                  <div>
-                    <h3 className="font-serif text-xl text-navy">{item.title}</h3>
-                    <p className="mt-1.5 leading-relaxed text-muted">{item.body}</p>
-                  </div>
+      {/* 4 — WHY GERSTIN (editorial founder story, dark) */}
+      <section className="relative overflow-hidden bg-navy py-24 md:py-32">
+        {/* Oversized graphic accent */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -right-16 -top-24 select-none font-serif text-[20rem] leading-none text-white/[0.03] md:text-[26rem]"
+        >
+          &amp;
+        </span>
+
+        <div className="container-wide relative">
+          {/* Asymmetric header */}
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <Reveal className="lg:col-span-7">
+              <p className="eyebrow" style={{ color: "var(--brand-accent)" }}>
+                Why Gerstin &amp; Associates
+              </p>
+              <h2 className="mt-5 font-serif text-[length:var(--text-h2)] leading-[1.08] text-white text-balance">
+                Focused by design.
+                <br className="hidden sm:block" /> Trusted by results.
+              </h2>
+            </Reveal>
+            <Reveal delay={80} className="lg:col-span-5 lg:pb-2">
+              <p className="leading-relaxed text-white/60">
+                For over two decades, businesses, investors, and community
+                associations across South Florida have trusted us with what matters
+                most — and stayed with us for the long run.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Layered composition */}
+          <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:gap-10">
+            {/* Founder portrait */}
+            <Reveal className="lg:col-span-5">
+              <div className="relative h-full min-h-[440px] overflow-hidden rounded-2xl bg-navy-700">
+                <SmartImage
+                  src={joshua.image ?? ""}
+                  alt="Joshua Gerstin, Founding Attorney"
+                  objectPosition="50% 20%"
+                  className="absolute inset-0 size-full object-cover"
+                  fallback={
+                    <div className="flex size-full items-center justify-center bg-gradient-to-br from-navy-700 to-navy">
+                      <span className="font-serif text-7xl text-white/15">JG</span>
+                    </div>
+                  }
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/15 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-white backdrop-blur">
+                    <BadgeCheck className="size-3.5 text-accent" />
+                    Florida Bar Board Certified
+                  </span>
+                  <p className="mt-3 font-serif text-xl text-white">
+                    Joshua Gerstin, Esq.
+                  </p>
+                  <p className="text-sm text-white/60">Founding Attorney</p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Right column: quote → stats → differentiators */}
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Quote className="size-9 text-accent/50" aria-hidden />
+                <blockquote className="mt-4 font-serif text-2xl leading-relaxed text-white md:text-[1.7rem] md:leading-relaxed">
+                  We deliver the advice, insight, and performance you get only at a
+                  firm that focuses on its strength — not its size.
+                </blockquote>
+                <p className="mt-4 text-sm text-white/50">
+                  The principle the firm was built on.
+                </p>
+              </Reveal>
+
+              {/* Trust stats */}
+              <Reveal delay={60}>
+                <div className="mt-10 grid grid-cols-2 gap-y-6 border-y border-white/10 py-7 sm:grid-cols-4">
+                  {firmStats.map((s, i) => (
+                    <div
+                      key={s.label}
+                      className={cn(
+                        "sm:px-6",
+                        i > 0 && "sm:border-l sm:border-white/10",
+                      )}
+                    >
+                      <div className="font-serif text-3xl text-accent">
+                        {s.value}
+                      </div>
+                      <div className="mt-1.5 text-xs leading-snug text-white/55">
+                        {s.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </Reveal>
-            ))}
+
+              {/* Differentiators */}
+              <div className="mt-9 grid gap-8 sm:grid-cols-3">
+                {whyChoose.slice(0, 3).map((item, i) => (
+                  <Reveal key={item.title} delay={i * 60}>
+                    <Icon name={item.icon} size={24} className="text-accent" />
+                    <h3 className="mt-4 font-serif text-lg text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">
+                      {item.body}
+                    </p>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* 5 — ATTORNEYS (large alternating profiles) */}
       <Section tone="paper">
@@ -140,51 +228,6 @@ export default function HomePage() {
         <div className="mt-16 space-y-20 md:space-y-24">
           {attorneys.map((a, i) => (
             <AttorneyFeature key={a.slug} attorney={a} index={i} />
-          ))}
-        </div>
-      </Section>
-
-      {/* 5.5 — SOUTH FLORIDA PRESENCE (waterfront divider) */}
-      <section className="relative overflow-hidden bg-navy">
-        <SmartImage
-          src={heroImage}
-          alt="South Florida coastline"
-          className="absolute inset-0 size-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy/75" />
-        <div className="container-wide relative py-24 text-center md:py-32">
-          <Reveal className="mx-auto max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-              Rooted in South Florida
-            </p>
-            <p className="mt-6 font-serif text-[length:var(--text-h2)] leading-tight text-white text-balance">
-              Premier legal counsel across Palm Beach, Broward &amp; Miami-Dade —
-              for over two decades.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 6 — THE FIRM'S DIFFERENCE (column-divided, no boxes) */}
-      <Section tone="navy">
-        <SectionHeader
-          align="left"
-          eyebrow="Why clients choose us"
-          title="What sets the firm apart"
-          intro="Real, tangible advantages our clients rely on — not slogans."
-          invert
-        />
-        <div className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-          {firmDifference.map((d, i) => (
-            <Reveal
-              key={d.title}
-              delay={(i % 4) * 70}
-              className="lg:border-l lg:border-white/12 lg:pl-8 lg:first:border-l-0 lg:first:pl-0"
-            >
-              <Icon name={d.icon} size={28} className="text-accent" />
-              <h3 className="mt-5 font-serif text-lg text-white">{d.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{d.body}</p>
-            </Reveal>
           ))}
         </div>
       </Section>
@@ -212,14 +255,21 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 8 — CONTACT CTA (waterfront background) */}
+      {/* 8 — CONTACT CTA */}
       <section className="relative overflow-hidden bg-navy">
-        <SmartImage
-          src={heroImage}
-          alt=""
-          className="absolute inset-0 size-full object-cover"
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
+            backgroundSize: "26px 26px",
+          }}
         />
-        <div className="absolute inset-0 bg-navy/90" />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
+        />
         <div className="container-wide relative grid gap-10 py-20 md:py-24 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <p className="eyebrow">Free consultation</p>

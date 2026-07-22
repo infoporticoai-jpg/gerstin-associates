@@ -91,7 +91,7 @@ export default async function AttorneyPage({
                     src={a.image}
                     alt={`${a.name}, ${a.title}`}
                     priority
-                    objectPosition="center top"
+                    objectPosition="50% 20%"
                     className="absolute inset-0 size-full object-cover"
                     fallback={
                       <span className="font-serif text-6xl text-navy/15">

@@ -1,11 +1,9 @@
 import { Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
-import { SmartImage } from "@/components/smart-image";
 import { firm } from "@/lib/firm";
-import { heroImage } from "@/lib/images";
 
-/** Reusable consultation CTA band with a waterfront backdrop. */
+/** Reusable consultation CTA band — solid navy with a soft accent glow. */
 export function CtaBand({
   title = "Put your mind at ease. Request a free consultation.",
   sub = "Tell us about your matter and we'll respond promptly. Confidential, with no obligation.",
@@ -17,12 +15,19 @@ export function CtaBand({
     <section className="bg-cream">
       <div className="container-wide py-16 md:py-20">
         <Reveal className="relative mx-auto max-w-4xl overflow-hidden rounded-xl bg-navy">
-          <SmartImage
-            src={heroImage}
-            alt=""
-            className="absolute inset-0 size-full object-cover"
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
+              backgroundSize: "24px 24px",
+            }}
           />
-          <div className="absolute inset-0 bg-navy/85" />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/12 blur-3xl"
+          />
           <div className="relative flex flex-col items-center gap-6 px-8 py-12 text-center md:px-14 md:py-14">
             <h2 className="font-serif text-[length:var(--text-h2)] leading-tight text-white text-balance">
               {title}

@@ -30,7 +30,7 @@ export function AttorneyFeature({
       {/* Portrait panel */}
       <div className={flip ? "lg:order-2" : ""}>
         <div className="relative overflow-hidden rounded-lg">
-          <div className="relative flex aspect-[5/6] items-center justify-center bg-navy">
+          <div className="relative flex aspect-[3/4] items-center justify-center bg-navy">
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.08]"
               style={{
@@ -45,7 +45,7 @@ export function AttorneyFeature({
                 src={attorney.image}
                 alt={`${attorney.name}, ${attorney.title} at Gerstin & Associates`}
                 className="absolute inset-0 size-full object-cover"
-                objectPosition="center top"
+                objectPosition="50% 22%"
                 fallback={
                   <span className="relative font-serif text-8xl text-white/90">
                     {initials}
