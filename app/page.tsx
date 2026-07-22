@@ -19,8 +19,6 @@ import {
 import { firm, fullAddress } from "@/lib/firm";
 import { heroImage } from "@/lib/images";
 
-const joshua = attorneys.find((a) => a.slug === "joshua-gerstin") ?? attorneys[0];
-
 export default function HomePage() {
   return (
     <>
@@ -102,12 +100,12 @@ export default function HomePage() {
         <PracticeScroll items={practiceAreas} />
       </Section>
 
-      {/* 4 — WHY GERSTIN (editorial founder story, dark) */}
-      <section className="relative overflow-hidden bg-navy py-24 md:py-32">
-        {/* Oversized graphic accent */}
+      {/* 4 — WHY GERSTIN (light editorial statement) */}
+      <section className="relative overflow-hidden bg-cream py-24 md:py-32">
+        {/* Faint oversized graphic accent */}
         <span
           aria-hidden
-          className="pointer-events-none absolute -right-16 -top-24 select-none font-serif text-[20rem] leading-none text-white/[0.03] md:text-[26rem]"
+          className="pointer-events-none absolute -right-16 -top-20 select-none font-serif text-[20rem] leading-none text-navy/[0.03] md:text-[26rem]"
         >
           &amp;
         </span>
@@ -116,16 +114,14 @@ export default function HomePage() {
           {/* Asymmetric header */}
           <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
             <Reveal className="lg:col-span-7">
-              <p className="eyebrow" style={{ color: "var(--brand-accent)" }}>
-                Why Gerstin &amp; Associates
-              </p>
-              <h2 className="mt-5 font-serif text-[length:var(--text-h2)] leading-[1.08] text-white text-balance">
+              <p className="eyebrow">Why Gerstin &amp; Associates</p>
+              <h2 className="mt-5 font-serif text-[length:var(--text-h2)] leading-[1.08] text-navy text-balance">
                 Focused by design.
                 <br className="hidden sm:block" /> Trusted by results.
               </h2>
             </Reveal>
             <Reveal delay={80} className="lg:col-span-5 lg:pb-2">
-              <p className="leading-relaxed text-white/60">
+              <p className="leading-relaxed text-muted">
                 For over two decades, businesses, investors, and community
                 associations across South Florida have trusted us with what matters
                 most — and stayed with us for the long run.
@@ -133,62 +129,34 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          {/* Founder principle — modest sharp portrait + pull quote */}
-          <div className="mt-16 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-            <Reveal className="lg:col-span-4">
-              <figure className="relative mx-auto w-full max-w-[260px] overflow-hidden rounded-2xl bg-navy-700 lg:mx-0">
-                <div className="relative aspect-[4/5]">
-                  <SmartImage
-                    src={joshua.image ?? ""}
-                    alt="Joshua Gerstin, Founding Attorney"
-                    objectPosition="50% 16%"
-                    className="absolute inset-0 size-full object-cover"
-                    fallback={
-                      <div className="flex size-full items-center justify-center bg-gradient-to-br from-navy-700 to-navy">
-                        <span className="font-serif text-6xl text-white/15">JG</span>
-                      </div>
-                    }
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
-                  <figcaption className="absolute inset-x-0 bottom-0 p-5">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-wider text-white backdrop-blur">
-                      <BadgeCheck className="size-3 text-accent" />
-                      Board Certified
-                    </span>
-                    <p className="mt-2.5 font-serif text-lg text-white">
-                      Joshua Gerstin, Esq.
-                    </p>
-                    <p className="text-xs text-white/60">Founding Attorney</p>
-                  </figcaption>
-                </div>
-              </figure>
-            </Reveal>
-
-            <Reveal delay={80} className="lg:col-span-8">
-              <Quote className="size-10 text-accent/50" aria-hidden />
-              <blockquote className="mt-4 font-serif text-2xl leading-snug text-white md:text-[2rem] md:leading-[1.25]">
+          {/* Pull-quote statement */}
+          <Reveal>
+            <figure className="mt-16 max-w-4xl">
+              <Quote className="size-10 text-accent/40" aria-hidden />
+              <blockquote className="mt-4 font-serif text-[1.7rem] leading-snug text-navy md:text-[2.4rem] md:leading-[1.22]">
                 We deliver the advice, insight, and performance you get only at a
                 firm that focuses on its strength — not its size.
               </blockquote>
-              <p className="mt-5 text-sm uppercase tracking-[0.16em] text-white/45">
+              <figcaption className="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent-600">
+                <span className="h-px w-8 bg-accent" />
                 The principle the firm was built on
-              </p>
-            </Reveal>
-          </div>
+              </figcaption>
+            </figure>
+          </Reveal>
 
-          {/* Trust stats — full width band */}
+          {/* Trust stats band */}
           <Reveal delay={60}>
-            <div className="mt-16 grid grid-cols-2 gap-y-8 border-y border-white/10 py-9 sm:grid-cols-4">
+            <div className="mt-16 grid grid-cols-2 gap-y-8 border-y border-line py-9 sm:grid-cols-4">
               {firmStats.map((s, i) => (
                 <div
                   key={s.label}
                   className={cn(
                     "sm:px-8",
-                    i > 0 && "sm:border-l sm:border-white/10",
+                    i > 0 && "sm:border-l sm:border-line",
                   )}
                 >
-                  <div className="font-serif text-4xl text-accent">{s.value}</div>
-                  <div className="mt-2 text-xs leading-snug text-white/55">
+                  <div className="font-serif text-4xl text-navy">{s.value}</div>
+                  <div className="mt-2 text-xs leading-snug text-muted">
                     {s.label}
                   </div>
                 </div>
@@ -197,12 +165,12 @@ export default function HomePage() {
           </Reveal>
 
           {/* Differentiators */}
-          <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-3">
+          <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-3">
             {whyChoose.slice(0, 3).map((item, i) => (
               <Reveal key={item.title} delay={i * 70}>
                 <Icon name={item.icon} size={26} className="text-accent" />
-                <h3 className="mt-4 font-serif text-xl text-white">{item.title}</h3>
-                <p className="mt-2.5 leading-relaxed text-white/60">{item.body}</p>
+                <h3 className="mt-4 font-serif text-xl text-navy">{item.title}</h3>
+                <p className="mt-2.5 leading-relaxed text-muted">{item.body}</p>
               </Reveal>
             ))}
           </div>
