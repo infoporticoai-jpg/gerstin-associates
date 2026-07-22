@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, BadgeCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icon";
 import { ButtonLink } from "@/components/ui/button";
+import { SmartImage } from "@/components/smart-image";
 import type { PracticeArea } from "@/lib/content";
 
 /**
@@ -78,6 +79,46 @@ export function PracticeScroll({ items }: { items: PracticeArea[] }) {
           property owners, and associations.
         </p>
 
+        {/* Active-practice image — updates as the list scrolls (desktop only) */}
+        {enhanced ? (
+          <div className="mt-8 hidden lg:block">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-navy">
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-navy to-navy-700">
+                <Icon
+                  name={items[active]?.icon ?? "Scale"}
+                  size={56}
+                  className="text-white/12"
+                />
+              </div>
+              <SmartImage
+                key={active}
+                src={items[active]?.image ?? ""}
+                alt={items[active]?.title ?? ""}
+                className="absolute inset-0 size-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent p-5">
+                <div className="flex items-center gap-3">
+                  <span className="font-serif text-lg leading-none text-accent">
+                    {String(active + 1).padStart(2, "0")}
+                  </span>
+                  <span className="relative h-px flex-1 bg-white/25">
+                    <span
+                      className="absolute inset-y-0 left-0 bg-accent transition-all duration-500 ease-out"
+                      style={{ width: `${((active + 1) / total) * 100}%` }}
+                    />
+                  </span>
+                  <span className="text-xs text-white/60">
+                    / {String(total).padStart(2, "0")}
+                  </span>
+                </div>
+                <p className="mt-2 font-serif text-lg text-white">
+                  {items[active]?.title}
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
         {/* Board-certification card */}
         <div className="mt-9 rounded-xl bg-navy p-7 text-white">
           <div className="flex items-center gap-2">
@@ -96,26 +137,6 @@ export function PracticeScroll({ items }: { items: PracticeArea[] }) {
           </div>
         </div>
 
-        {/* Live progress — updates as the list scrolls (desktop only) */}
-        {enhanced ? (
-          <div className="mt-7 hidden lg:block" aria-hidden>
-            <div className="flex items-center gap-3">
-              <span className="font-serif text-xl leading-none text-accent">
-                {String(active + 1).padStart(2, "0")}
-              </span>
-              <span className="relative h-px flex-1 bg-line">
-                <span
-                  className="absolute inset-y-0 left-0 bg-accent transition-all duration-500 ease-out"
-                  style={{ width: `${((active + 1) / total) * 100}%` }}
-                />
-              </span>
-              <span className="text-sm text-muted">/ {String(total).padStart(2, "0")}</span>
-            </div>
-            <p className="mt-2.5 font-serif text-lg text-navy transition-opacity duration-300">
-              {items[active]?.title}
-            </p>
-          </div>
-        ) : null}
       </div>
 
       {/* Scrolling list */}

@@ -13,6 +13,7 @@ import { Section } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
 import { CtaBand } from "@/components/cta-band";
 import { ButtonLink } from "@/components/ui/button";
+import { SmartImage } from "@/components/smart-image";
 import { attorneys } from "@/lib/content";
 import { firm } from "@/lib/firm";
 
@@ -84,10 +85,20 @@ export default async function AttorneyPage({
           {/* Sidebar */}
           <aside className="lg:sticky lg:top-28 h-fit space-y-6">
             <div className="overflow-hidden rounded-lg border border-line">
-              <div className="flex aspect-[4/5] items-center justify-center bg-gradient-to-b from-cream-deep to-cream">
+              <div className="relative flex aspect-[4/5] items-center justify-center bg-gradient-to-b from-cream-deep to-cream">
                 {a.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={a.image} alt={a.name} className="size-full object-cover" />
+                  <SmartImage
+                    src={a.image}
+                    alt={`${a.name}, ${a.title}`}
+                    priority
+                    objectPosition="center top"
+                    className="absolute inset-0 size-full object-cover"
+                    fallback={
+                      <span className="font-serif text-6xl text-navy/15">
+                        {initials}
+                      </span>
+                    }
+                  />
                 ) : (
                   <span className="font-serif text-6xl text-navy/15">{initials}</span>
                 )}

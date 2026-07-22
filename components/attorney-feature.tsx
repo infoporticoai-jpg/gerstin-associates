@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, GraduationCap, Scale } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { ButtonLink } from "@/components/ui/button";
+import { SmartImage } from "@/components/smart-image";
 import type { Attorney } from "@/lib/content";
 
 /**
@@ -40,11 +41,16 @@ export function AttorneyFeature({
               aria-hidden
             />
             {attorney.image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <SmartImage
                 src={attorney.image}
-                alt={attorney.name}
-                className="size-full object-cover"
+                alt={`${attorney.name}, ${attorney.title} at Gerstin & Associates`}
+                className="absolute inset-0 size-full object-cover"
+                objectPosition="center top"
+                fallback={
+                  <span className="relative font-serif text-8xl text-white/90">
+                    {initials}
+                  </span>
+                }
               />
             ) : (
               <span className="relative font-serif text-8xl text-white/90">

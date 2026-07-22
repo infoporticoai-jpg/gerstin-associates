@@ -5,8 +5,10 @@ import { AttorneyRow } from "@/components/cards";
 import { Icon } from "@/components/icon";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
+import { SmartImage } from "@/components/smart-image";
 import { attorneys, whyChoose, firmStats } from "@/lib/content";
 import { firm } from "@/lib/firm";
+import { heroImage, aboutImage } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "About the Firm",
@@ -23,6 +25,8 @@ export default function AboutPage() {
         title="We know the law and we know business"
         intro="A Boca Raton firm built to deliver definitive answers and practical solutions — cost-effectively delivered and easy to understand."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+        image={heroImage}
+        imageAlt="South Florida waterfront"
       />
 
       {/* Mission */}
@@ -52,6 +56,18 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={120}>
+            <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl bg-navy">
+              <SmartImage
+                src={aboutImage}
+                alt="Gerstin & Associates"
+                className="absolute inset-0 size-full object-cover"
+                fallback={
+                  <div className="flex size-full items-center justify-center bg-gradient-to-br from-navy to-navy-700">
+                    <Icon name="Landmark" size={64} className="text-white/15" />
+                  </div>
+                }
+              />
+            </div>
             <div className="grid grid-cols-2 gap-4">
               {firmStats.map((s) => (
                 <div

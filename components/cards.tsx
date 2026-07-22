@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Icon } from "@/components/icon";
+import { SmartImage } from "@/components/smart-image";
 import type { PracticeArea, Attorney, Article } from "@/lib/content";
 
 /* ---- Practice area card ---- */
@@ -106,13 +107,14 @@ export function AttorneyRow({ attorney }: { attorney: Attorney }) {
       href={`/attorneys/${attorney.slug}`}
       className="group flex items-center gap-5 rounded-lg border border-line bg-paper p-5 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_20px_44px_-28px_rgba(12,35,64,0.4)]"
     >
-      <span className="flex size-16 shrink-0 items-center justify-center rounded-md bg-navy font-serif text-2xl text-white/90">
+      <span className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-md bg-navy font-serif text-2xl text-white/90">
         {attorney.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <SmartImage
             src={attorney.image}
             alt={attorney.name}
-            className="size-full rounded-md object-cover"
+            objectPosition="center top"
+            className="absolute inset-0 size-full object-cover"
+            fallback={<span>{initials}</span>}
           />
         ) : (
           initials

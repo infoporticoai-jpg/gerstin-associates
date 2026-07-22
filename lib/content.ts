@@ -16,6 +16,8 @@ export type PracticeArea = {
   services: string[];
   whoWeHelp: string[];
   faqs: { q: string; a: string }[];
+  /** Supporting image (drop the PNG into /public to activate it). */
+  image?: string;
   /** Short scannable keywords shown on the practice-area rows. */
   tags?: string[];
   /** Optional badge shown to feature a standout area (e.g. Board Certified). */
@@ -59,6 +61,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "business-litigation",
     title: "Business Litigation",
     icon: "Gavel",
+    image: "/images/practice-areas/business-litigation.png",
     tags: ["Disputes", "Contracts", "Partnerships", "Commercial Claims"],
     summary:
       "Assertive, focused representation for the disputes that put your business at risk.",
@@ -100,6 +103,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "business-transactions",
     title: "Business Transactions",
     icon: "Briefcase",
+    image: "/images/practice-areas/business-transactions.png",
     tags: ["Formation", "M&A", "Contracts", "Agreements"],
     summary:
       "Full-service counsel from formation through acquisition — keeping you out in front.",
@@ -146,6 +150,7 @@ export const practiceAreas: PracticeArea[] = [
     icon: "Building2",
     badge: "Board Certified",
     featured: true,
+    image: "/images/practice-areas/community-associations.png",
     tags: ["HOAs", "Condominiums", "Covenants", "Collections"],
     summary:
       "South Florida's board-certified counsel for condominium and homeowner associations — our signature practice.",
@@ -192,6 +197,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "hotel-development",
     title: "Hotel & Motel Development",
     icon: "Hotel",
+    image: "/images/practice-areas/hotel-motel-development.png",
     tags: ["Acquisition", "Financing", "Franchising", "Operations"],
     summary:
       "Experienced counsel across acquisition, development, financing, and operations.",
@@ -233,6 +239,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "information-technology",
     title: "Information Technology",
     icon: "Cpu",
+    image: "/images/practice-areas/information-technology.png",
     tags: ["Software", "Licensing", "Privacy", "E-commerce"],
     summary:
       "Practical technology-agreement counsel for businesses of every size.",
@@ -273,6 +280,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "real-estate-title",
     title: "Real Estate Closings & Title Insurance",
     icon: "KeyRound",
+    image: "/images/practice-areas/title-insurance-closings.png",
     tags: ["Closings", "Title", "Escrow"],
     summary:
       "Residential and commercial closings and title insurance through our affiliated title company.",
@@ -305,6 +313,7 @@ export const attorneys: Attorney[] = [
     slug: "joshua-gerstin",
     name: "Joshua Gerstin, Esq.",
     title: "Founding Attorney",
+    image: "/images/attorneys/joshua-gerstin.png",
     boardCertification:
       "Board Certified by The Florida Bar in Condominium and Planned Development Law",
     short:
@@ -352,6 +361,7 @@ export const attorneys: Attorney[] = [
     slug: "alicia-pokhoy",
     name: "Alicia Pokhoy, Esq.",
     title: "Attorney",
+    image: "/images/attorneys/alicia-pokhoy.png",
     short:
       "An experienced litigator who has served as lead counsel for community associations, known as a professional and aggressive advocate for her clients.",
     bio: [

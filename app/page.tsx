@@ -7,95 +7,73 @@ import { Icon } from "@/components/icon";
 import { ArticleCard } from "@/components/cards";
 import { PracticeScroll } from "@/components/practice-scroll";
 import { AttorneyFeature } from "@/components/attorney-feature";
+import { SmartImage } from "@/components/smart-image";
 import {
   practiceAreas,
   attorneys,
   articles,
-  firmStats,
   firmDifference,
   whyChoose,
 } from "@/lib/content";
 import { firm, fullAddress } from "@/lib/firm";
+import { heroImage } from "@/lib/images";
 
 export default function HomePage() {
   return (
     <>
-      {/* 1 — HERO */}
-      <section className="relative overflow-hidden bg-cream">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, var(--brand-navy) 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-          aria-hidden
+      {/* 1 — HERO (waterfront background) */}
+      <section className="relative overflow-hidden bg-navy text-white">
+        <SmartImage
+          src={heroImage}
+          alt="South Florida waterfront"
+          priority
+          className="absolute inset-0 size-full object-cover"
         />
-        <div className="container-wide relative grid gap-12 py-20 md:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
-            <Reveal>
-              <p className="eyebrow">Boca Raton · Attorneys &amp; Counselors at Law</p>
-              <h1 className="mt-6 font-serif text-[length:var(--text-display)] leading-[1.05] text-navy text-balance">
-                We know the law.
-                <br />
-                We know business.
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                To compete and grow, businesses and community associations need
-                definitive answers and solutions that are cost-effectively
-                delivered and easy to understand. For over two decades, Gerstin
-                &amp; Associates has provided exactly that — premier legal counsel
-                in plain English across South Florida.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact" variant="accent" size="lg">
-                  Free Consultation
-                  <ArrowRight className="size-4" />
-                </ButtonLink>
-                <ButtonLink href="/practice-areas" variant="outline" size="lg">
-                  Explore Practice Areas
-                </ButtonLink>
-              </div>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
-                <a
-                  href={firm.phoneHref}
-                  className="inline-flex items-center gap-2 transition-colors hover:text-navy"
-                >
-                  <Phone className="size-4 text-accent" />
-                  {firm.phone}
-                </a>
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="size-4 text-accent" />
-                  {firm.address.city}, {firm.address.state}
-                </span>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Credential panel */}
-          <Reveal delay={120}>
-            <div className="relative rounded-lg bg-navy p-8 text-white shadow-[0_40px_80px_-40px_rgba(12,35,64,0.65)] md:p-10">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/90">
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-navy/20" />
+        <div className="container-wide relative py-28 md:py-36 lg:py-40">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow" style={{ color: "var(--brand-accent)" }}>
+              Boca Raton · Attorneys &amp; Counselors at Law
+            </p>
+            <h1 className="mt-6 font-serif text-[length:var(--text-display)] leading-[1.05] text-white text-balance">
+              We know the law.
+              <br />
+              We know business.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+              To compete and grow, businesses and community associations need
+              definitive answers and solutions that are cost-effectively delivered
+              and easy to understand. For over two decades, Gerstin &amp;
+              Associates has provided exactly that — premier legal counsel in plain
+              English across South Florida.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact" variant="accent" size="lg">
+                Free Consultation
+                <ArrowRight className="size-4" />
+              </ButtonLink>
+              <ButtonLink href="/practice-areas" variant="outline-light" size="lg">
+                Explore Practice Areas
+              </ButtonLink>
+            </div>
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/15 pt-6 text-sm text-white/75">
+              <span className="inline-flex items-center gap-2">
                 <BadgeCheck className="size-4 text-accent" />
-                Florida Bar Board Certified
+                Board Certified
               </span>
-              <p className="mt-5 font-serif text-2xl leading-snug text-white">
-                Board Certified in Condominium &amp; Planned Development Law
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/60">
-                Recognition of the highest level of expertise The Florida Bar
-                awards — the depth behind every matter we handle.
-              </p>
-              <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-md bg-white/10">
-                {firmStats.map((s) => (
-                  <div key={s.label} className="bg-navy p-5">
-                    <div className="font-serif text-3xl text-accent">{s.value}</div>
-                    <div className="mt-1.5 text-xs leading-snug text-white/55">
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <span className="hidden text-white/25 sm:inline">·</span>
+              <span>20+ years&rsquo; experience</span>
+              <span className="hidden text-white/25 sm:inline">·</span>
+              <span>Palm Beach · Broward · Miami-Dade</span>
+              <span className="hidden text-white/25 sm:inline">·</span>
+              <a
+                href={firm.phoneHref}
+                className="inline-flex items-center gap-2 transition-colors hover:text-white"
+              >
+                <Phone className="size-4 text-accent" />
+                {firm.phone}
+              </a>
             </div>
           </Reveal>
         </div>
@@ -166,6 +144,27 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* 5.5 — SOUTH FLORIDA PRESENCE (waterfront divider) */}
+      <section className="relative overflow-hidden bg-navy">
+        <SmartImage
+          src={heroImage}
+          alt="South Florida coastline"
+          className="absolute inset-0 size-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy/75" />
+        <div className="container-wide relative py-24 text-center md:py-32">
+          <Reveal className="mx-auto max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+              Rooted in South Florida
+            </p>
+            <p className="mt-6 font-serif text-[length:var(--text-h2)] leading-tight text-white text-balance">
+              Premier legal counsel across Palm Beach, Broward &amp; Miami-Dade —
+              for over two decades.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 6 — THE FIRM'S DIFFERENCE (column-divided, no boxes) */}
       <Section tone="navy">
         <SectionHeader
@@ -213,9 +212,15 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 8 — CONTACT CTA */}
+      {/* 8 — CONTACT CTA (waterfront background) */}
       <section className="relative overflow-hidden bg-navy">
-        <div className="container-wide grid gap-10 py-20 md:py-24 lg:grid-cols-2 lg:items-center">
+        <SmartImage
+          src={heroImage}
+          alt=""
+          className="absolute inset-0 size-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy/90" />
+        <div className="container-wide relative grid gap-10 py-20 md:py-24 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <p className="eyebrow">Free consultation</p>
             <h2 className="mt-5 font-serif text-[length:var(--text-h2)] leading-tight text-white text-balance">

@@ -1,29 +1,50 @@
 import { Reveal } from "@/components/reveal";
+import { SmartImage } from "@/components/smart-image";
 import { Breadcrumbs, type Crumb } from "@/components/breadcrumbs";
 
-/** Interior page hero band — navy, with breadcrumbs and title. */
+/**
+ * Interior page hero band — navy, with breadcrumbs and title.
+ * Pass `image` to use a photograph as the background (a dark overlay keeps
+ * text legible); it falls back to the navy dot pattern when absent.
+ */
 export function PageHeader({
   eyebrow,
   title,
   intro,
   crumbs,
+  image,
+  imageAlt = "",
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   crumbs: Crumb[];
+  image?: string;
+  imageAlt?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-navy">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
-          backgroundSize: "26px 26px",
-        }}
-        aria-hidden
-      />
+      {image ? (
+        <>
+          <SmartImage
+            src={image}
+            alt={imageAlt}
+            priority
+            className="absolute inset-0 size-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/55" />
+        </>
+      ) : (
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
+            backgroundSize: "26px 26px",
+          }}
+          aria-hidden
+        />
+      )}
       <div className="container-wide relative py-14 md:py-20">
         <Breadcrumbs crumbs={crumbs} />
         <Reveal className="mt-6 max-w-3xl">

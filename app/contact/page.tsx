@@ -10,6 +10,7 @@ import {
   mapsDirectionsUrl,
   mapsEmbedUrl,
 } from "@/lib/firm";
+import { officeImage } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -26,6 +27,8 @@ export default function ContactPage() {
         title="Request a free consultation"
         intro="Tell us about your matter and we'll respond promptly. Your consultation is confidential and there is no obligation."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        image={officeImage}
+        imageAlt="Gerstin & Associates office in Boca Raton"
       />
 
       <Section tone="paper">

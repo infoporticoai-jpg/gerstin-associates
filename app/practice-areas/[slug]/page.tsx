@@ -9,6 +9,8 @@ import { CtaBand } from "@/components/cta-band";
 import { AttorneyRow, ArticleCard } from "@/components/cards";
 import { Icon } from "@/components/icon";
 import { ButtonLink } from "@/components/ui/button";
+import { SmartImage } from "@/components/smart-image";
+import { Reveal } from "@/components/reveal";
 import {
   practiceAreas,
   internalPracticeAreas,
@@ -78,34 +80,54 @@ export default async function PracticeAreaPage({
         ]}
       />
 
-      {/* Overview + services */}
+      {/* Overview — image + text split */}
       <Section tone="paper">
-        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-navy shadow-[0_40px_80px_-40px_rgba(12,35,64,0.5)]">
+              <SmartImage
+                src={pa.image ?? ""}
+                alt={pa.title}
+                className="absolute inset-0 size-full object-cover"
+                fallback={
+                  <div className="flex size-full items-center justify-center bg-gradient-to-br from-navy to-navy-700">
+                    <Icon name={pa.icon} size={72} className="text-white/15" />
+                  </div>
+                }
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
             <p className="eyebrow">Overview</p>
             <div className="prose-legal mt-5 max-w-xl text-[1.05rem]">
               {pa.overview.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
+          </Reveal>
+        </div>
+      </Section>
 
-            <div className="mt-10">
-              <h2 className="font-serif text-2xl text-navy">How we help</h2>
-              <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-                {pa.services.map((s) => (
-                  <li key={s} className="flex items-start gap-3 text-[0.95rem] text-ink/85">
-                    <Check className="mt-0.5 size-4 shrink-0 text-accent" />
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      {/* Services + who we help */}
+      <Section tone="cream">
+        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <h2 className="font-serif text-2xl text-navy">How we help</h2>
+            <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+              {pa.services.map((s) => (
+                <li key={s} className="flex items-start gap-3 text-[0.95rem] text-ink/85">
+                  <Check className="mt-0.5 size-4 shrink-0 text-accent" />
+                  {s}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Sidebar: who we help + CTA */}
-          <aside className="lg:sticky lg:top-28 h-fit space-y-6">
-            <div className="rounded-lg border border-line bg-cream p-7">
-              <span className="flex size-11 items-center justify-center rounded-sm bg-paper text-accent-600">
+          <aside className="h-fit space-y-6 lg:sticky lg:top-28">
+            <div className="rounded-lg border border-line bg-paper p-7">
+              <span className="flex size-11 items-center justify-center rounded-sm bg-cream text-accent-600">
                 <Icon name={pa.icon} size={22} />
               </span>
               <h3 className="mt-5 font-serif text-lg text-navy">Who we help</h3>
@@ -134,7 +156,7 @@ export default async function PracticeAreaPage({
 
       {/* FAQ */}
       {pa.faqs.length ? (
-        <Section tone="cream">
+        <Section tone="paper">
           <div className="mx-auto max-w-3xl">
             <SectionHeader
               align="left"
@@ -149,7 +171,7 @@ export default async function PracticeAreaPage({
       ) : null}
 
       {/* Attorneys */}
-      <Section tone="paper">
+      <Section tone="cream">
         <SectionHeader
           align="left"
           eyebrow="Your attorneys"
@@ -163,7 +185,7 @@ export default async function PracticeAreaPage({
       </Section>
 
       {/* Related insights */}
-      <Section tone="cream">
+      <Section tone="paper">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeader align="left" eyebrow="Insights" title="Related reading" />
           <Link
