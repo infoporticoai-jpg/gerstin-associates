@@ -65,6 +65,7 @@ export function SiteFooter() {
           <FooterCol title="Firm">
             <FooterLink href="/about">About</FooterLink>
             <FooterLink href="/attorneys">Attorneys</FooterLink>
+            <FooterLink href="/careers">Careers</FooterLink>
             <FooterLink href="/blog">Insights</FooterLink>
             <FooterLink href="/contact">Contact</FooterLink>
           </FooterCol>

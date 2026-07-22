@@ -13,7 +13,7 @@ import { Logo } from "@/components/logo";
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/attorneys", label: "Attorneys" },
-  { href: "/blog", label: "Insights" },
+  { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
 

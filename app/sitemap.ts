@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/attorneys",
     "/practice-areas",
     "/blog",
+    "/careers",
     "/contact",
     "/privacy-policy",
     "/disclaimer",
