@@ -5,7 +5,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { Icon } from "@/components/icon";
 import { ArticleCard } from "@/components/cards";
-import { PracticeList } from "@/components/practice-list";
+import { PracticeScroll } from "@/components/practice-scroll";
 import { AttorneyFeature } from "@/components/attorney-feature";
 import {
   practiceAreas,
@@ -16,15 +16,6 @@ import {
   whyChoose,
 } from "@/lib/content";
 import { firm, fullAddress } from "@/lib/firm";
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <div className="font-serif text-2xl text-accent">{value}</div>
-      <div className="mt-1 text-[0.7rem] leading-tight text-white/55">{label}</div>
-    </div>
-  );
-}
 
 export default function HomePage() {
   return (
@@ -125,38 +116,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 3 — PRACTICE AREAS (editorial rows) */}
+      {/* 3 — PRACTICE AREAS (sticky-rail: pinned left, scrolling list) */}
       <Section tone="paper">
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:h-fit">
-            <SectionHeader
-              align="left"
-              eyebrow="Practice Areas"
-              title="Focused expertise where it matters most"
-              intro="From business disputes to community association counsel, our practice is built around the legal needs of South Florida's businesses, property owners, and associations."
-            />
-            {/* Trust panel — balances the column with real credentials */}
-            <Reveal delay={120} className="mt-9 rounded-xl bg-navy p-7 text-white">
-              <div className="flex items-center gap-2">
-                <BadgeCheck className="size-4 text-accent" />
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-                  Florida Bar Board Certified
-                </span>
-              </div>
-              <p className="mt-3 font-serif text-xl leading-snug text-white">
-                Condominium &amp; Planned Development Law
-              </p>
-              <div className="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-5">
-                <Stat value="20+" label="Years' experience" />
-                <Stat value="6" label="Practice areas" />
-                <Stat value="3" label="Counties served" />
-              </div>
-            </Reveal>
-          </div>
-          <div>
-            <PracticeList items={practiceAreas} />
-          </div>
-        </div>
+        <PracticeScroll items={practiceAreas} />
       </Section>
 
       {/* 4 — WHY CHOOSE (borderless icon + text rows) */}
