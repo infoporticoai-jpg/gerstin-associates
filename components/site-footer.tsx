@@ -3,14 +3,22 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { firm, addressLines } from "@/lib/firm";
 import { practiceAreas } from "@/lib/content";
 import { Logo } from "@/components/logo";
+import { SmartImage } from "@/components/smart-image";
+import { heroImage } from "@/lib/images";
 
 export function SiteFooter() {
   const year = 2026;
   const lines = addressLines();
 
   return (
-    <footer className="bg-navy text-white/70">
-      <div className="container-wide py-16 md:py-20">
+    <footer className="relative overflow-hidden bg-navy text-white/70">
+      <SmartImage
+        src={heroImage}
+        alt=""
+        className="absolute inset-0 size-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy/90 to-navy/75" />
+      <div className="container-wide relative py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand + address */}
           <div>
