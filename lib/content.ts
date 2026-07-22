@@ -16,8 +16,12 @@ export type PracticeArea = {
   services: string[];
   whoWeHelp: string[];
   faqs: { q: string; a: string }[];
+  /** Short scannable keywords shown on the practice-area rows. */
+  tags?: string[];
   /** Optional badge shown to feature a standout area (e.g. Board Certified). */
   badge?: string;
+  /** Marks the firm's flagship practice for prominent treatment. */
+  featured?: boolean;
   /** External practice handled by the firm's sister company. */
   external?: { href: string; label: string };
 };
@@ -55,6 +59,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "business-litigation",
     title: "Business Litigation",
     icon: "Gavel",
+    tags: ["Disputes", "Contracts", "Partnerships", "Commercial Claims"],
     summary:
       "Assertive, focused representation for the disputes that put your business at risk.",
     overview: [
@@ -95,6 +100,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "business-transactions",
     title: "Business Transactions",
     icon: "Briefcase",
+    tags: ["Formation", "M&A", "Contracts", "Agreements"],
     summary:
       "Full-service counsel from formation through acquisition — keeping you out in front.",
     overview: [
@@ -139,8 +145,10 @@ export const practiceAreas: PracticeArea[] = [
     title: "Community Associations",
     icon: "Building2",
     badge: "Board Certified",
+    featured: true,
+    tags: ["HOAs", "Condominiums", "Covenants", "Collections"],
     summary:
-      "Board-certified counsel for South Florida condominium and homeowner associations.",
+      "South Florida's board-certified counsel for condominium and homeowner associations — our signature practice.",
     overview: [
       "Our Community Association practice represents homeowner and condominium associations throughout South Florida. We represent the Association — not individual homeowners — and provide prompt, personal service whether a community is self-managed or professionally managed.",
       "Unlike many firms, our Community Association practice does not charge a monthly service or retainer fee. We work on an à la carte basis, so associations pay for the counsel they actually use. Our founding attorney is Board Certified by The Florida Bar in Condominium and Planned Development Law.",
@@ -184,6 +192,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "hotel-development",
     title: "Hotel & Motel Development",
     icon: "Hotel",
+    tags: ["Acquisition", "Financing", "Franchising", "Operations"],
     summary:
       "Experienced counsel across acquisition, development, financing, and operations.",
     overview: [
@@ -224,6 +233,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "information-technology",
     title: "Information Technology",
     icon: "Cpu",
+    tags: ["Software", "Licensing", "Privacy", "E-commerce"],
     summary:
       "Practical technology-agreement counsel for businesses of every size.",
     overview: [
@@ -263,6 +273,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "real-estate-title",
     title: "Real Estate Closings & Title Insurance",
     icon: "KeyRound",
+    tags: ["Closings", "Title", "Escrow"],
     summary:
       "Residential and commercial closings and title insurance through our affiliated title company.",
     overview: [

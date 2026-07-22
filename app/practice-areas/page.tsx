@@ -23,7 +23,7 @@ export default function PracticeAreasPage() {
       />
       <Section tone="paper">
         <div className="mx-auto max-w-4xl">
-          <PracticeList items={practiceAreas} />
+          <PracticeList items={practiceAreas} showCta={false} />
         </div>
       </Section>
       <CtaBand />
