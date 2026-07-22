@@ -146,7 +146,7 @@ export function ArticleCard({ article }: { article: Article }) {
       href={article.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col rounded-md border border-line bg-paper p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_28px_60px_-30px_rgba(12,35,64,0.4)]"
+      className="group flex h-full flex-col rounded-md border border-line bg-paper p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_28px_60px_-30px_rgba(12,35,64,0.4)]"
     >
       <span className="text-xs font-semibold uppercase tracking-wider text-accent-600">
         {article.category}

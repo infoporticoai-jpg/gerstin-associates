@@ -134,8 +134,9 @@ export default function HomePage() {
             <figure className="mt-16 max-w-4xl">
               <Quote className="size-10 text-accent/40" aria-hidden />
               <blockquote className="mt-4 font-serif text-[1.7rem] leading-snug text-navy md:text-[2.4rem] md:leading-[1.22]">
-                We deliver the advice, insight, and performance you get only at a
-                firm that focuses on its strength — not its size.
+                Gerstin &amp; Associates delivers the kind of advice, insight and
+                performance you can get only at a law firm that focuses on its
+                strength, not its size.
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent-600">
                 <span className="h-px w-8 bg-accent" />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Check, ArrowRight, Users } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
 import { FaqSection } from "@/components/faq-section";
@@ -127,14 +127,11 @@ export default async function PracticeAreaPage({
           {/* Sidebar: who we help + CTA */}
           <aside className="h-fit space-y-6 lg:sticky lg:top-28">
             <div className="rounded-lg border border-line bg-paper p-7">
-              <span className="flex size-11 items-center justify-center rounded-sm bg-cream text-accent-600">
-                <Icon name={pa.icon} size={22} />
-              </span>
-              <h3 className="mt-5 font-serif text-lg text-navy">Who we help</h3>
+              <h3 className="font-serif text-lg text-navy">Who we help</h3>
               <ul className="mt-4 space-y-2.5">
                 {pa.whoWeHelp.map((w) => (
-                  <li key={w} className="flex items-start gap-2.5 text-sm text-muted">
-                    <Users className="mt-0.5 size-4 shrink-0 text-accent" />
+                  <li key={w} className="flex items-start gap-3 text-sm text-muted">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent/70" />
                     {w}
                   </li>
                 ))}
