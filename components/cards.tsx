@@ -94,6 +94,44 @@ export function AttorneyCard({ attorney }: { attorney: Attorney }) {
   );
 }
 
+/* ---- Compact horizontal attorney row (secondary contexts) ---- */
+export function AttorneyRow({ attorney }: { attorney: Attorney }) {
+  const initials = attorney.name
+    .replace(/,.*$/, "")
+    .split(" ")
+    .map((n) => n[0])
+    .join("");
+  return (
+    <Link
+      href={`/attorneys/${attorney.slug}`}
+      className="group flex items-center gap-5 rounded-lg border border-line bg-paper p-5 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_20px_44px_-28px_rgba(12,35,64,0.4)]"
+    >
+      <span className="flex size-16 shrink-0 items-center justify-center rounded-md bg-navy font-serif text-2xl text-white/90">
+        {attorney.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={attorney.image}
+            alt={attorney.name}
+            className="size-full rounded-md object-cover"
+          />
+        ) : (
+          initials
+        )}
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-serif text-lg text-navy">{attorney.name}</span>
+        <span className="mt-0.5 block text-xs font-semibold uppercase tracking-wider text-accent-600">
+          {attorney.title}
+        </span>
+        <span className="mt-1.5 block line-clamp-2 text-sm leading-relaxed text-muted">
+          {attorney.short}
+        </span>
+      </span>
+      <ArrowRight className="size-5 shrink-0 self-center text-navy/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent" />
+    </Link>
+  );
+}
+
 /* ---- Article card (links to the live post pending full migration) ---- */
 export function ArticleCard({ article }: { article: Article }) {
   const date = new Date(article.date).toLocaleDateString("en-US", {

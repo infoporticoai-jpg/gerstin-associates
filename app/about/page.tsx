@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
-import { AttorneyCard } from "@/components/cards";
+import { AttorneyRow } from "@/components/cards";
 import { Icon } from "@/components/icon";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
@@ -76,15 +76,15 @@ export default function AboutPage() {
           title="The principles behind our counsel"
           intro="Every engagement reflects the same commitments — the reasons clients return to us across matters and years."
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {whyChoose.map((v, i) => (
             <Reveal key={v.title} delay={(i % 3) * 70}>
-              <div className="flex h-full flex-col rounded-md border border-line bg-paper p-7">
-                <span className="flex size-11 items-center justify-center rounded-sm bg-cream text-accent-600">
-                  <Icon name={v.icon} size={22} />
-                </span>
-                <h3 className="mt-5 font-serif text-lg text-navy">{v.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{v.body}</p>
+              <div className="border-t-2 border-accent/70 pt-5">
+                <div className="flex items-center gap-3">
+                  <Icon name={v.icon} size={24} className="text-accent" />
+                  <h3 className="font-serif text-lg text-navy">{v.title}</h3>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{v.body}</p>
               </div>
             </Reveal>
           ))}
@@ -98,9 +98,9 @@ export default function AboutPage() {
           eyebrow="Our attorneys"
           title="The people you'll work with"
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
+        <div className="mt-12 grid gap-5 lg:max-w-3xl">
           {attorneys.map((a) => (
-            <AttorneyCard key={a.slug} attorney={a} />
+            <AttorneyRow key={a.slug} attorney={a} />
           ))}
         </div>
       </Section>

@@ -16,6 +16,8 @@ export type PracticeArea = {
   services: string[];
   whoWeHelp: string[];
   faqs: { q: string; a: string }[];
+  /** Optional badge shown to feature a standout area (e.g. Board Certified). */
+  badge?: string;
   /** External practice handled by the firm's sister company. */
   external?: { href: string; label: string };
 };
@@ -136,6 +138,7 @@ export const practiceAreas: PracticeArea[] = [
     slug: "community-associations",
     title: "Community Associations",
     icon: "Building2",
+    badge: "Board Certified",
     summary:
       "Board-certified counsel for South Florida condominium and homeowner associations.",
     overview: [

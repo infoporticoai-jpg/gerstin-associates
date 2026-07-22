@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
-import { AttorneyCard } from "@/components/cards";
-import { Reveal } from "@/components/reveal";
+import { AttorneyFeature } from "@/components/attorney-feature";
 import { CtaBand } from "@/components/cta-band";
 import { attorneys } from "@/lib/content";
 
@@ -23,11 +22,9 @@ export default function AttorneysPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Attorneys" }]}
       />
       <Section tone="paper">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:max-w-3xl">
+        <div className="space-y-20 md:space-y-24">
           {attorneys.map((a, i) => (
-            <Reveal key={a.slug} delay={i * 80}>
-              <AttorneyCard attorney={a} />
-            </Reveal>
+            <AttorneyFeature key={a.slug} attorney={a} index={i} />
           ))}
         </div>
       </Section>

@@ -6,7 +6,7 @@ import { Section, SectionHeader } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
 import { FaqSection } from "@/components/faq-section";
 import { CtaBand } from "@/components/cta-band";
-import { AttorneyCard, ArticleCard } from "@/components/cards";
+import { AttorneyRow, ArticleCard } from "@/components/cards";
 import { Icon } from "@/components/icon";
 import { ButtonLink } from "@/components/ui/button";
 import {
@@ -155,9 +155,9 @@ export default async function PracticeAreaPage({
           eyebrow="Your attorneys"
           title="Experienced counsel for your matter"
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
+        <div className="mt-12 grid gap-5 lg:max-w-3xl">
           {attorneys.map((a) => (
-            <AttorneyCard key={a.slug} attorney={a} />
+            <AttorneyRow key={a.slug} attorney={a} />
           ))}
         </div>
       </Section>

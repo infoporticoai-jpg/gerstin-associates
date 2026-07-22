@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { PageHeader } from "@/components/page-header";
-import { PracticeCard } from "@/components/cards";
-import { Reveal } from "@/components/reveal";
+import { PracticeList } from "@/components/practice-list";
 import { CtaBand } from "@/components/cta-band";
 import { practiceAreas } from "@/lib/content";
 
@@ -23,12 +22,8 @@ export default function PracticeAreasPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Practice Areas" }]}
       />
       <Section tone="paper">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {practiceAreas.map((pa, i) => (
-            <Reveal key={pa.slug} delay={(i % 3) * 80}>
-              <PracticeCard pa={pa} />
-            </Reveal>
-          ))}
+        <div className="mx-auto max-w-4xl">
+          <PracticeList items={practiceAreas} />
         </div>
       </Section>
       <CtaBand />

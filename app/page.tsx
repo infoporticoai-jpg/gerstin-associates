@@ -4,7 +4,9 @@ import { Section, SectionHeader } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { Icon } from "@/components/icon";
-import { PracticeCard, AttorneyCard, ArticleCard } from "@/components/cards";
+import { ArticleCard } from "@/components/cards";
+import { PracticeList } from "@/components/practice-list";
+import { AttorneyFeature } from "@/components/attorney-feature";
 import {
   practiceAreas,
   attorneys,
@@ -114,25 +116,25 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 3 — PRACTICE AREAS */}
+      {/* 3 — PRACTICE AREAS (editorial rows) */}
       <Section tone="paper">
-        <SectionHeader
-          eyebrow="Practice Areas"
-          title="Focused expertise where it matters most"
-          intro="From business disputes to community association counsel, our practice is built around the legal needs of South Florida's businesses, property owners, and associations."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {practiceAreas.map((pa, i) => (
-            <Reveal key={pa.slug} delay={(i % 3) * 80}>
-              <PracticeCard pa={pa} />
-            </Reveal>
-          ))}
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <SectionHeader
+            align="left"
+            eyebrow="Practice Areas"
+            title="Focused expertise where it matters most"
+            intro="From business disputes to community association counsel, our practice is built around the legal needs of South Florida's businesses, property owners, and associations."
+            className="lg:sticky lg:top-28"
+          />
+          <div>
+            <PracticeList items={practiceAreas} />
+          </div>
         </div>
       </Section>
 
-      {/* 4 — WHY CHOOSE */}
+      {/* 4 — WHY CHOOSE (borderless icon + text rows) */}
       <Section tone="cream">
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <SectionHeader
             align="left"
             eyebrow="Why Gerstin & Associates"
@@ -140,15 +142,19 @@ export default function HomePage() {
             intro="Our clients stay with us because we combine deep legal experience with genuine understanding of their goals — and deliver results, not expensive legal theories."
             className="lg:sticky lg:top-28"
           />
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="border-t border-line/70">
             {whyChoose.map((item, i) => (
               <Reveal key={item.title} delay={(i % 2) * 60}>
-                <div className="flex h-full flex-col rounded-md border border-line bg-paper p-6">
-                  <span className="flex size-11 items-center justify-center rounded-sm bg-cream text-accent-600">
-                    <Icon name={item.icon} size={22} />
-                  </span>
-                  <h3 className="mt-5 font-serif text-lg text-navy">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+                <div className="grid grid-cols-[auto_1fr] items-start gap-5 border-b border-line/70 py-6">
+                  <Icon
+                    name={item.icon}
+                    size={26}
+                    className="mt-1 text-accent"
+                  />
+                  <div>
+                    <h3 className="font-serif text-xl text-navy">{item.title}</h3>
+                    <p className="mt-1.5 leading-relaxed text-muted">{item.body}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -156,47 +162,40 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 5 — ATTORNEYS */}
+      {/* 5 — ATTORNEYS (large alternating profiles) */}
       <Section tone="paper">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeader
-            align="left"
-            eyebrow="Our Attorneys"
-            title="Experienced counsel you work with directly"
-            intro="You work directly with experienced attorneys who understand both the law and the realities of running a business."
-          />
-          <ButtonLink href="/attorneys" variant="ghost" className="shrink-0">
-            All attorneys
-            <ArrowRight className="size-4" />
-          </ButtonLink>
-        </div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
+        <SectionHeader
+          align="left"
+          eyebrow="Our Attorneys"
+          title="Experienced counsel you work with directly"
+          intro="You work directly with attorneys who understand both the law and the realities of running a business."
+        />
+        <div className="mt-16 space-y-20 md:space-y-24">
           {attorneys.map((a, i) => (
-            <Reveal key={a.slug} delay={i * 80}>
-              <AttorneyCard attorney={a} />
-            </Reveal>
+            <AttorneyFeature key={a.slug} attorney={a} index={i} />
           ))}
         </div>
       </Section>
 
-      {/* 6 — THE FIRM'S DIFFERENCE */}
+      {/* 6 — THE FIRM'S DIFFERENCE (column-divided, no boxes) */}
       <Section tone="navy">
         <SectionHeader
+          align="left"
           eyebrow="Why clients choose us"
           title="What sets the firm apart"
           intro="Real, tangible advantages our clients rely on — not slogans."
           invert
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {firmDifference.map((d, i) => (
-            <Reveal key={d.title} delay={(i % 4) * 70}>
-              <div className="flex h-full flex-col rounded-md border border-white/10 bg-white/[0.04] p-7">
-                <span className="flex size-11 items-center justify-center rounded-sm bg-accent/15 text-accent">
-                  <Icon name={d.icon} size={22} />
-                </span>
-                <h3 className="mt-5 font-serif text-lg text-white">{d.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/65">{d.body}</p>
-              </div>
+            <Reveal
+              key={d.title}
+              delay={(i % 4) * 70}
+              className="lg:border-l lg:border-white/12 lg:pl-8 lg:first:border-l-0 lg:first:pl-0"
+            >
+              <Icon name={d.icon} size={28} className="text-accent" />
+              <h3 className="mt-5 font-serif text-lg text-white">{d.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">{d.body}</p>
             </Reveal>
           ))}
         </div>
